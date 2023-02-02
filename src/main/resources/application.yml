@@ -1,0 +1,15 @@
+
+server:
+  port: 8181  servlet:    context-path: /api
+  
+spring:  application:    name: myJobHunter
+    
+      datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: sinha
+    password: sinha12345
+    
+  jpa:    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:      ddl-auto: create
+    #    driver-class-name: com.jdbc:postgresql.jdbc.Driver
