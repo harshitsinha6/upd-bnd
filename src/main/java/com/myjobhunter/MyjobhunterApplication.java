@@ -8,6 +8,7 @@ public class MyjobhunterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyjobhunterApplication.class, args);
+//		apt install docker.io
 //		docker run -d -p 5432:5432 -e POSTGRES_USER=sinha -e POSTGRES_PASSWORD=sinha12345 postgres:latest
 		
 //		-- public.jobhunter definition

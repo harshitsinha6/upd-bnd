@@ -1,6 +1,11 @@
 
 server:
-  port: 8181  servlet:    context-path: /api
+  port: 443  servlet:    context-path: /api
+  ssl:
+    key-store: keystore.p12
+    key-store-password: harshit
+    keyStoreType: PKCS12
+    keyAlias: tomcat
   
 spring:  application:    name: myJobHunter
     
