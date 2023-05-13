@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.myjobhunter.dto.FilteredDataDTO;
@@ -19,7 +20,7 @@ public class JobHunterService {
 	JobHuntingRepository jobHuntingRepository;
 	
 	public List<MyJobHunter> getJobs(int pageNumber, int pageSize){
-		Pageable pages = PageRequest.of(pageNumber, pageSize);
+		Pageable pages = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "id"));
 		return jobHuntingRepository.findAll();
 	}
 	
@@ -32,18 +33,18 @@ public class JobHunterService {
 	}
 	
 	public List<MyJobHunter> getByCompanyName(String companyName){
-		Pageable pages = PageRequest.of(0, 3);
+		Pageable pages = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "id"));
 		return jobHuntingRepository.findAllByCompanyName(companyName, pages);
 	}
 	
 	public List<MyJobHunter> getByJobType(String jobType){
-		Pageable pages = PageRequest.of(0, 3);
+		Pageable pages = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "id"));
 		return jobHuntingRepository.findAllByJobType(jobType, pages);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<MyJobHunter> getFilteredJobs(FilteredDataDTO filteredDataDTO, int pageNumber, int pageSize){
-		Pageable pages = PageRequest.of(pageNumber, pageSize);
+		Pageable pages = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "id"));
 		List<MyJobHunter> jobDetailsList = (List<MyJobHunter>) jobHuntingRepository.findAll();
 		
 		System.out.println("=================================" + filteredDataDTO.toString());
