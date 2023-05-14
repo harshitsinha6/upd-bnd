@@ -1,6 +1,7 @@
 package com.myjobhunter.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,12 @@ public class JobHunterService {
 	
 	public List<MyJobHunter> getJobs(int pageNumber, int pageSize){
 		Pageable pages = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "id"));
-		return jobHuntingRepository.findAll();
+		List<MyJobHunter> retList = new ArrayList<>();
+//		return Collections.reverse(jobHuntingRepository.findAll());
+		for(MyJobHunter job: jobHuntingRepository.findAll()) {
+			retList.add(0, job);
+		}
+		return retList;
 	}
 	
 	public void add_job(MyJobHunter myJobHunter) {
@@ -96,6 +102,7 @@ public class JobHunterService {
 			
 		System.out.println("+++++++++++++++++++++++++++++++++");
 		return jobDetailsList;
+		
 	}
 	
 	public List<MyJobHunter> getDetailsByNameStatusLocationType(List<MyJobHunter> jobDetailsList, String name, String[] status, String[] location, String[] jobType){

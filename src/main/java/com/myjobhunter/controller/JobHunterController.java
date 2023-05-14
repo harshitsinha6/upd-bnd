@@ -1,5 +1,6 @@
 package com.myjobhunter.controller;
 
+import java.util.ArrayList;
 import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,12 @@ public class JobHunterController {
 	
 	@PostMapping("/get-filtered-jobs/{pageNumber}/{pageSize}")
 	public ResponseEntity<List<MyJobHunter>> getFilteredJobs(@PathVariable int pageNumber, @PathVariable int pageSize, @RequestBody FilteredDataDTO filteredDataDTO){
-		return ResponseEntity.ok(jobHunterService.getFilteredJobs(filteredDataDTO, pageNumber, pageSize));
+//		return ResponseEntity.ok(jobHunterService.getFilteredJobs(filteredDataDTO, pageNumber, pageSize));
+		List<MyJobHunter> retList = new ArrayList<>();
+		for(MyJobHunter job: jobHunterService.getFilteredJobs(filteredDataDTO, pageNumber, pageSize)) {
+			retList.add(0, job);
+		}
+		return ResponseEntity.ok(retList);
 	}
 	
 
